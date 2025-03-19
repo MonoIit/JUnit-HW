@@ -44,7 +44,7 @@ public class Main {
         newList.forEach(System.out::println);
     }
 
-    public static List<Employee> parseXML(String filename) {
+    private static List<Employee> parseXML(String filename) {
         try {
             List<Employee> list = new ArrayList<>();
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -74,7 +74,7 @@ public class Main {
         return List.of();
     }
 
-    public static List<Employee> parseCSV(String[] columnMapping, String filename) {
+    private static List<Employee> parseCSV(String[] columnMapping, String filename) {
         try (CSVReader csvReader = new CSVReader(new FileReader(filename))) {
             ColumnPositionMappingStrategy<Employee> strategy =
                     new ColumnPositionMappingStrategy<>();
@@ -91,7 +91,7 @@ public class Main {
         return List.of();
     }
 
-    public static String listToJson(List<Employee> list) {
+    private static String listToJson(List<Employee> list) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 
@@ -102,7 +102,7 @@ public class Main {
         return json;
     }
 
-    public static void writeString(String data, String filename) {
+    private static void writeString(String data, String filename) {
         try (FileWriter fw = new FileWriter(filename)) {
             fw.write(data);
         } catch (Exception ex) {
@@ -110,7 +110,7 @@ public class Main {
         }
     }
 
-    public static String readString(String filename) {
+    private static String readString(String filename) {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String output;
             output = br.readLine();
@@ -121,7 +121,7 @@ public class Main {
         return "";
     }
 
-    public static List<Employee> jsonToList(String json) {
+    private static List<Employee> jsonToList(String json) {
         JSONParser parser = new JSONParser();
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -141,6 +141,4 @@ public class Main {
         }
         return result;
     }
-
-
 }
